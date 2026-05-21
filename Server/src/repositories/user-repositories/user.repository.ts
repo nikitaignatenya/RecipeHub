@@ -74,13 +74,4 @@ export class UserRepository {
       throw new HttpException(404, { id: 1, message: `${error}` });
     }
   }
-  // public async findUserByRefresh(refreshToken: string) {
-  //   try {
-  //     const token = await Token.findOne({ where: { refreshToken: refreshToken } });
-  //     const user = await User.findOne({ where: { id: token.dataValues.userId } });
-  //     return user;
-  //   } catch (error) {
-  //     throw new HttpException(404, { id: 1, message: `${error}` });
-  //   }
-  // }
 }
