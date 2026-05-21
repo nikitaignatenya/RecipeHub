@@ -8,7 +8,8 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
   try {
     const tokenService = new TokenService();
     const authorizationHeader = req.headers.authorization;
-    const accessToken = authorizationHeader.trim();
+    const accessToken = authorizationHeader.split(' ')[1];
+
     const userData = tokenService.validateAccessToken(accessToken);
     const { refreshToken } = req.cookies;
     if (!refreshToken) throw new HttpException(404, ExceptionTypeUser.AUTHORIZATION_ERROR);
