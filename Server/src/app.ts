@@ -1,5 +1,5 @@
 import express from 'express';
-import { PORT } from '@config/dotenv.config';
+import { PORT, CLIENT_URL } from '@config/dotenv.config';
 import { iRoutes, iAppRoute } from '@interfaces/app-interfaces/router.interface';
 import cors from 'cors';
 import { errorMiddleware } from '@middlewares/error.middleware';
@@ -35,7 +35,12 @@ class App {
   }
 
   private initializeMiddlewares(): void {
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: CLIENT_URL,
+        credentials: true,
+      }),
+    );
     this.app.use(cookieParser());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));

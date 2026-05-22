@@ -1,0 +1,1 @@
+//асинхронные экшены (login, register, logout)
